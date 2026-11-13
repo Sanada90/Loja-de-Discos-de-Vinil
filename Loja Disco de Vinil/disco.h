@@ -21,7 +21,7 @@ int discoTemVenda(int idDisco);
 
 void salvarDiscosCSV() {
     int i;
-    FILE *arq = fopen("discos.csv", "w");
+    FILE *arq = fopen("discos.csv", "w");  // Abre o arquivo "discos.csv" em modo de escrita ("w" - write).
 
     if (arq == NULL) {
         printf("Erro ao abrir discos.csv para escrita!\n");
@@ -53,7 +53,7 @@ void carregarDiscosCSV() {
 
    
     while (totalDiscos < 50 &&
-           fscanf(arq, "%d;%49[^;];%49[^;];%f;%d\n",
+           fscanf(arq, "%d;%49[^;];%49[^;];%f;%d\n",    // A máscara "%49[^;]" instrui o fscanf a ler caracteres até encontrar um ponto e vírgulav garante que nomes compostos sejam lidos corretamente sem estourar o limite
                   &discos[totalDiscos].id, discos[totalDiscos].titulo,
                   discos[totalDiscos].artista, &discos[totalDiscos].preco,
                   &discos[totalDiscos].estoque) == 5) {
@@ -72,7 +72,7 @@ void carregarDiscosCSV() {
 int buscarIndiceDisco(int id) {
     int i;
 
-    for (i = 0; i < totalDiscos; i++) {
+    for (i = 0; i < totalDiscos; i++) {     //Desloca todos os elementos de uma posição do vetor da RAM, sobrescrevendo a posição do item excluído
         if (discos[i].id == id) {
             return i;
         }
